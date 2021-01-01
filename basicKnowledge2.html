@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>指令</title>
+    <style>
+        .bar {
+            font-size: 50px;
+        }
+        .red {
+            color: red;
+        }
+        .green {
+            color: green;
+        }
+        .tabs {
+            display: flex;
+            height: 50px;
+        }
+        .tabs span {
+            flex: 1;
+            border: 1px solid #ccc;
+            height: 100%;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+        }
+        .tabs span.on {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div id='app'>
+        <!-- 文本插值 -->
+        <h1>{{a}}</h1>
+        <div>{{b}}</div>
+
+        <hr>
+        
+        <!-- 指令的值是 js表达式 -->
+        <!-- 双向绑定 -->
+        <h1 v-text='a+100'></h1>
+
+        <!-- v-once它只能和{{}}配合使用-->
+        <!-- 只渲染一次 -->
+        <h1 v-once>{{a+100}}</h1>
+
+        <!-- v-html把HTML字符进行解析渲染-->
+        <div v-text='content'></div>
+        <div v-html='content'></div>
+
+
+        <hr>
+
+        <!-- v-bind用于动态绑定HTML标签属性 -->
+        <!-- 简写 : -->
+        <h1 :title='hello'>欢迎光临</h1>
+        <img :src="img" alt="">
+
+        <hr>
+        <!-- 动态样式 -->
+        <h1 :class='foo' class="bar" :style="divStyle">动态样式1</h1>
+        <!-- y -->
+        <!-- <h1 :class='foo' class="bar" >动态样式1</h1> -->
+        <h1 :class='{"red": bol}'>动态样式2</h1>
+        <h1 :class='[foo, ""]'>动态样式3</h1>
+
+
+        <hr>
+
+        <!-- 列表循环 -->
+        <div v-for='(item, i) in arr' :key='item.id'>
+            <span v-text='i'></span>
+            <span>-</span>
+            <span v-text='item.id'></span>
+            <span>-</span>
+            <span v-text='item.name'></span>
+        </div>
+
+        <!-- 对象渲染 -->
+        <div v-for='(value, key, index) in userinfo'>
+            <span v-text='value'></span>
+            <span>-</span>
+            <span v-text='key'></span>
+            <span>-</span>
+            <span v-text='index'></span>
+        </div>
+        <hr>
+
+        <!-- 条件渲染 -->
+        <!-- v-show -->
+        <!-- 当v-show的值是flase时,Vue使用display:none;进行隐藏 -->
+        <div>
+            <span v-show='show'>AAAAA</span>
+            <span v-show='!show'>BBBBB</span>
+        </div>
+        <hr>
+        <!-- v-if -->
+        <!-- 当v-if的值为false时,直接移出DOM元素 -->
+        <!-- 耗费性能更高 -->
+        <div>
+            <span v-if='index==1'>AAAAAAAAAAAAAA</span>
+            <span v-else-if='index==2'>BBBBBBBBBBBBBBB</span>
+            <span v-else-if='index==3'>CCCCCCCCCCCCCCC</span>
+            <span v-else>DDDDDDDDDDDDDDD</span>
+        </div>
+        <hr>
+
+        <!-- 事件绑定 -->
+        <!-- v-on 用来绑定事件, 简写 @ -->
+        <div class="tabs">
+            <span v-on:click='tabClick(1, $event)' :class='{"on": tabIndex==1}'>Tab1</span>
+            <span @click='tabClick(2, $event)' :class='{"on": tabIndex==2}'>Tab2</span>
+            <span @click='tabClick(3, $event)' :class='{"on": tabIndex==3}'>Tab3</span>
+        </div>
+        <hr>
+
+        <!-- 表单绑定 -->
+        <!-- v-model -->
+        <input type="text" v-model='msg'>
+        <span v-text='msg'></span>
+
+
+        <br><br><br><br><br><br>
+        
+
+
+    
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <script>
+        // Vue实例（组件）
+        var app = new Vue({
+            el: '#app',
+            // 声明式变量
+            data: {
+                a: 1,
+                b: 2,
+                content: '<a href="http://www.3fengs.com">我的站点</a>',
+                hello: 'welcome to qf',
+                foo: 'red',
+                img: 'http://m.360buyimg.com/n1/s150x150_jfs/t29566/227/1464891645/10350/a5b133e2/5ce20cdcNd9cdd972.jpg!q70.jpg.dpg',
+                divStyle: {
+                    color:'orange', 
+                    fontSize:'100px'
+                },
+                bol: true,
+                arr: [
+                    {id: 1, name: 'zrf'},
+                    {id: 2, name: 'hxx'},
+                    {id: 3, name: 'hgx'}
+                ],
+                userinfo: {
+                    name: '班廷',
+                    age: 20,
+                    garden: '男'
+                },
+                show: true,
+                index: 1,
+                tabIndex: 1,
+                msg: ''
+            },
+            methods: {
+                tabClick: function(idx, e) {
+                    console.log('点击了', idx)
+                    console.log('事件对象', e)
+                    this.tabIndex = idx
+                }
+            }
+        })
+
+
+
+    </script>
+    
+</body>
+</html>
