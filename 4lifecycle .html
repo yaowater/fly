@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id='app'>
+        <h1 v-text='msg'></h1>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // 生命周期
+
+        // vue实例, 组件
+        // 钩子函数
+        var app = new Vue({
+            el: '#app',  // 挂载
+            data: {
+                msg: 'hello',
+                timer: null
+            },
+            beforeCreate: function() {
+                console.log('----before create')
+            },
+            created: function() {
+                console.log('----created')
+            },
+            beforeMount: function() {
+                console.log('----before mount')
+            },
+            mounted: function() {
+                console.log('----mounted')
+                // 调接口
+                this.timer = setInterval(function(){
+                    console.log('00')
+                }, 1000)
+            },
+            beforeUpdate: function() {
+                console.log('----before update')
+            },
+            updated: function() {
+                console.log('----updated')
+            },
+            beforeDestroy: function() {
+                console.log('----before destroy')
+                // 清除一些耗费浏览器性能的变量 长连接 定时器
+                clearInterval(this.timer)
+            },
+            destroyed: function() {
+                console.log('----destroyed')
+            }
+        }) 
+    </script>
+
+    
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id='app'>
+
+        <!-- 事件修饰可以链式调用 -->
+        <div @click='outerClick'>
+            <div v-on:click.stop='innerClick(1,$event)'>
+                <input type="checkbox" @click.prevent.stop='inputClick'>
+            </div>
+        </div>
+        <div>
+            <!-- 键盘事件 -->
+            <input type="text" @keyup.enter='add'>
+        </div>
+        <hr>
+
+
+        <!-- 文本表单 -->
+        <input type="text" v-model='username' @input='inputHandle'>
+        <textarea v-model="message"></textarea>
+
+        <hr>
+
+        <!-- 单选按钮 -->
+        <div>请选择你的性别:</div>
+        <input type="radio" value="1" v-model='person'>
+        <label>男</label>
+        <input type="radio" value="2" v-model='person'>
+        <label>女</label>
+        <hr>
+
+
+        <!-- 复选框(单选) -->
+        <input type="checkbox" v-model='checked'>
+        <label>我已阅读此协议</label>
+
+        <hr>
+        <!-- 复选框(多选) -->
+        <div>请选择你的爱好:</div>
+        <span v-for='item in favList'>
+            <input type="checkbox" :value="item.id" v-model='favArr'>
+            <label v-text='item.label'></label>
+        </span>
+        <hr>
+
+
+        <!-- 下拉选框(单选) -->
+        <div>请选择你的学历:</div>
+        <select v-model='student'>
+            <option v-for='item in studentList' :value="item.id" v-text='item.label'></option>
+        </select>
+        <hr>
+
+
+        <!-- 下拉选框(多选) -->
+        <div>请选择你的学历:</div>
+        <select multiple v-model='studentArr'>
+            <option v-for='item in studentList' :value="item.id" v-text='item.label'></option>
+        </select>
+        <hr>
+
+
+        <!-- 表单修饰符 -->
+        <div>
+            <input type="text" v-model.number.lazy='aaa'><br>
+            <input type="text" v-model.trim.lazy='bbb'><br>
+            <input type="text" v-model.lazy='ccc'>
+        </div>
+
+        <!-- y: .lazy :失去焦点同步一次
+           .number :格式化数字
+           .trim : 去除首尾空格 -->
+
+
+        <br><br><br><br><br>
+        
+
+
+
+        
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // 声明式（响应式数据操作）
+        // 组件化（组件封装）
+        var app = new Vue({
+            el: '#app',
+            data: {
+                username: '',
+                message: '',
+                checked: false,
+                favArr: [1],
+                favList: [
+                    { id: 1, label: '读书' },
+                    { id: 2, label: '编程' },
+                    { id: 3, label: '跑步' },
+                    { id: 4, label: '打游戏' }
+                ],
+                person: '1',
+                person2: '2',
+                studentList: [
+                    {id: 1, label: '博士'},
+                    {id: 2, label: '硕士'},
+                    {id: 3, label: '本科'},
+                    {id: 4, label: '大专'},
+                    {id: 5, label: '高中'}
+                ],
+                student: 5,
+                studentArr: [],
+                aaa: '',
+                bbb: '',
+                ccc: ''
+            },
+            methods: {
+                innerClick: function(arg, e) {
+                    console.log(arg)
+                    console.log(e)
+                },
+                outerClick: function() {
+                    console.log('外层div被点击了')
+                },
+                inputClick: function() {
+                    console.log('input')
+                },
+                add: function() {
+                    console.log('add')
+                },
+                inputHandle: function() {
+                    console.log(this.username)
+                }
+            }
+        })
+    </script>
+    
+</body>
+</html>

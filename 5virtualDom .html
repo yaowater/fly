@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 找出最小差异并更新dom -->
+
+    <!-- web = M + V
+
+    MVC(发生在后端)
+
+    MVVM（框架）
+
+    M - Model 模型（数据）
+    V - View 视图（DOM）
+
+    VM - 视图模型（虚拟DOM）就是vue实例中声明式变量
+    DOM操作最耗费性能的一种 -->
+
+    <div id='app'>
+        <h1 v-text='msg'></h1>
+        <h1 v-text='foo'></h1>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // data中声明式的变量，双向绑定（响应式）
+        // vue构建的这样一个系统，就叫做响应式系统
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '1',
+                foo: '2'
+            }
+        })
+    </script>
+
+    虚拟DOM，实际上就是一个json对象，放在内在
+
+    <div id='container'>
+        <h1 v-text='msg'></h1>
+    </div>
+
+    <!-- 旧的VM
+    var vm1 = {
+        tagName: 'div',
+        attr: {
+            props: {
+                id: 'container',
+                class: ''
+            }
+        },
+        children: {
+            tagName: 'h1',
+            children: '1'
+        }
+    }
+
+    复制一份新的VM = vm2
+
+    var vm1 = {
+        tagName: 'div',
+        attr: {
+            props: {
+                id: 'container',
+                class: ''
+            }
+        },
+        children: {
+            tagName: 'h1',
+            children: '2'
+        }
+    }
+
+    脏节点：
+    var dirty = Diff(vm1, vm2)
+    通知vue去更新DOM -->
+    
+</body>
+</html>
