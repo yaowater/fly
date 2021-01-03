@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cnode</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <div id='app' class="app">
+
+        <!-- 顶部导航 -->
+        <div class="head">
+            <a href="https://cnodejs.org/" target="_blank">cnodejs.org</a>
+        </div>
+
+        <!-- 筛选 -->
+        <cn-filter :cates='cates' v-model='tab'></cn-filter>
+
+        <!-- 列表 -->
+        <div v-show='!show'>
+            <cn-article v-for='row in list' 
+            :key='row.id'
+            :row='row'></cn-article>
+        </div>
+        <cn-loading v-show='show'></cn-loading>
+
+        <!-- 分页 -->
+        <cn-page v-model='page'></cn-page>
+
+    </div>
+
+    
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src='./fetch.js'></script>
+
+    <script src='./components/cn-filter.js'></script>
+    <script src='./components/cn-article.js'></script>
+    <script src='./components/cn-page.js'></script>
+    <script src='./components/cn-loading.js'></script>
+
+
+
+    <script src='./app.js'></script>
+</body>
+</html>
+
