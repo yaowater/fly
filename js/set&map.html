@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+<script>
+
+// ES6两种新的数据结构
+
+// Set：成员的值唯一，没有重复的值
+// var set1 = new Set();
+// console.log( set1 );
+// console.log( typeof set1 );//'object'
+
+// var set2 = new Set([1,2,3,4,5,2,3,4]);
+// console.log(set2);// Set(5) {1, 2, 3, 4, 5}
+// console.log(set2[0]);//undefined
+// console.log( [...set2] );
+// console.log(set2.size);//5 成员个数
+// set2.add(6);//添加值
+// console.log(set2);
+// set2.delete(3);
+// console.log(set2);
+
+var set3 = new Set(['a1','a2','a3','a4']);
+// set3.forEach((val,index,set)=>{// key===value
+//     console.log(val);
+//     console.log(index);
+//     console.log(set);
+// });
+
+// for(var key in set3){//不能遍历
+//     console.log(key);
+// }
+
+// for(var val of set3){//能遍历
+//     console.log(val);
+// }
+
+
+
+// var obj = {
+//     0:'a1',
+//     1:'a2',
+//     2:'a3',
+//     3:'a4'
+// }
+// for(var key in obj){
+//     console.log(typeof key);//'string'
+// }
+
+// var map1 = new Map();
+// console.log(map1);//Map(0) {}
+// console.log(typeof map1);//object
+
+var map2 = new Map([['k1',111],['k2',222],['k3',333]]);
+// console.log(map2);//Map(3) {"k1" => 111, "k2" => 222, "k3" => 333}
+// console.log( map2.get('k2') );//222
+map2.set(88,444)
+console.log(map2);
+
+// map2.forEach((val,key,map)=>{
+//     console.log(val);//111
+//     console.log(key);//'k1'
+//     console.log(map);//map2
+// })
+
+// for(var key in map2){//不能遍历
+//     console.log(key);
+// }
+
+// for(var val of map2){
+//     console.log(val);
+//     console.log(val[0]);
+//     console.log(val[1]);
+// }
+
+for(var [key,val] of map2){
+    // console.log(key,val);
+    console.log(typeof key);
+}
+
+</script>
+</body>
+</html>

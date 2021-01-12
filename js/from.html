@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<ul class="list">
+    <li>11</li>
+    <li>22</li>
+    <li>33</li>
+    <li>44</li>
+    <li>55</li>
+</ul>
+
+
+<script>
+let lis = document.querySelectorAll('.list li');//伪数组、类数组
+// console.log(lis);
+
+function fn(){
+    console.log(arguments);//伪数组、类数组
+}
+// fn(2,3,4,5);
+
+//伪数组、类数组
+let likeArray = {
+    0:'a1',
+    1:'a2',
+    2:'a3',
+    length: 3
+}
+
+var arr1 = Array.from(lis);
+// arr1.push('abcd');
+// console.log(arr1);
+
+// function fn2(){
+//     var arr2 = Array.from(arguments);
+//     arr2.push('abcd');
+//     console.log(arr2);
+// }
+// fn2(2,3,4,5);
+
+// Array.from()第二个参数其实就是一个map函数
+var arr3 = Array.from(likeArray,(item,index,arr)=>{
+    return item+'x';
+});
+arr3.push('abcx');
+console.log(arr3);
+
+</script>
+</body>
+</html>

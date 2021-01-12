@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+
+</head>
+<body>
+    
+<div id="box">快捷键</div>
+<ul class="list">
+    <li>a</li>
+    <li>b</li>
+    <li>c</li>
+    <li>d</li>
+</ul>
+
+
+<script>
+
+// 在函数外读取函数内部的变量；局部变量的值能够被保存下来
+// function outer(){
+//     var x = 1;
+//     return function (){
+//         x++;
+//         console.log(x);
+//     }
+// }
+// var fn = outer();
+// fn();//2
+// fn();//3
+// fn();//4
+
+// outer()();//2
+// outer()();//2
+// outer()();//2
+
+
+// 将模块的公有属性和方法暴露出来。
+// var myModule = (function (){
+//     var name = '小红';
+//     var age = 28;// 私有属性
+//     var sex = '女';// 公有属性
+//     var say = function (){
+//         console.log('hi，大家好，我叫'+age);
+//     }
+
+//     return {
+//         n: name,
+//         s: sex,
+//         hello: say
+//     }
+// })();
+// console.log(sex);//报错
+// console.log( myModule.name );
+// myModule.say();
+
+
+// window.onload = function (){
+//     var box = document.querySelector('#box');
+//     box.onclick = function (){
+//         // this
+//         console.log(this);
+//         box.style.color = 'red';
+//     }
+// }
+
+
+var lis = document.querySelectorAll('.list li');
+// for (let i = 0, len = lis.length; i < len; i++){
+//     lis[i].onclick = function (){
+//         console.log(i);
+//     }
+// }
+
+// for (var i = 0, len = lis.length; i < len; i++){
+//     lis[i].index = i;
+//     lis[i].onclick = function (){
+//         console.log(this.index);
+//     }
+// }
+
+for (var i = 0, len = lis.length; i < len; i++){
+    (function (x){
+        lis[x].onclick = function (){
+            console.log(x);
+        }
+    })(i);
+}
+
+</script>
+</body>
+</html>

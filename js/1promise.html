@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+<script>
+// 创建Promise对象
+var p1 = new Promise(function(resolve,reject){
+    // resolve  让promise对象从进行中变成 成功的状态
+    // reject  让promise对象从进行中变成 失败的状态
+    // console.lag('123456');
+    resolve('成功');
+    // reject('失败');
+});
+
+// console.log( p1 );// Promise {...}
+
+// Promise实例对象的then方法
+// then里面的第一个函数在状态为成功时执行（必须参数），第二函数在状态为失败时执行（可选）
+// p1.then(function(msg){
+//     // console.log(msg);//'成功'
+//     console.lag(msg);
+// },function(msg){
+//     console.log(msg);
+// })
+// .catch(function(err){
+//     console.log(err);
+// });
+
+// Promise实例对象的catch方法，捕获错误
+
+
+
+// setTimeout(function(){
+//     console.log('程序1');
+//     setTimeout(function(){
+//         console.log('程序2');
+//         setTimeout(function(){
+//             console.log('程序3');
+//         },3000);
+//     },2000);
+// },1000);
+
+function doSomething(msg,time){
+    return new Promise(function (resolve,reject){
+        setTimeout(function(){
+            console.log(msg);
+            resolve();
+        },time);
+    });
+}
+doSomething('程序1',1000)
+.then(function(){
+    return doSomething('程序2',2000);//返回promise对象
+})
+.then(function(){
+    return doSomething('程序3',3000);//返回promise对象
+})
+.then(function(){
+    console.log('所有程序执行完成');
+})
+
+
+
+</script>
+</body>
+</html>

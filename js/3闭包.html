@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+</head>
+<body>
+
+
+<script>
+// 作用域：全局作用域，局部作用域
+// 作用域：一个变量起作用的范围！
+
+// var a = 111;
+// function test1(){
+//     console.log(a);
+// }
+// test1();
+
+// var b = 222;
+// function test2(){
+//     var c = 333;
+//     console.log(b);
+// }
+// test2();
+// console.log(c);
+
+
+// function test3(){
+//     var d = 5;
+//     d++;
+//     console.log(d);
+// }
+// test3();//6
+// test3();//6  7
+// test3();//6  8
+
+
+// var e = 5;
+// function test4(){
+//     e++;
+//     console.log(e);
+// }
+// test4();//6
+// test4();//7
+// test4();//8
+
+// 闭包
+var y = 2;
+function outer(x){
+    var t = 1;
+    function c(){}
+    return function inner(){
+        t++;
+        // x++;
+        // c();
+        console.log(t);
+    }
+    // inner()
+    // return inner;
+}
+var fn = outer();
+fn();
+fn();
+// fn();
+// fn();
+
+
+</script>
+</body>
+</html>
