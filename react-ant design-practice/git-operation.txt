@@ -1,0 +1,216 @@
+版本管理工具
+
+
+安装：从git官网下载安装、或者从软件管家中安装
+
+
+配置：
+
+git config --global user.name 'abc'
+git config --global user.email '448914712@qq.com'
+
+码云:本身就是免费
+gitlab是收费的:https://git.lug.ustc.edu.cn/users/sign_in
+
+
+加入项目组：你把git邮箱给到你的相关负责，让他把你加进去。
+
+创建分支：
+git branch --list  查看当前你本地所有的分支名
+git branch gdy
+git checkout gdy   从master分支中拉取代码到gdy分支
+可以开始工作了
+git add --all
+git commit -m '今天修改了购物车的bug'
+git push origin gdy
+
+
+分支合并及冲突处理：
+冲突产生的根本原因是，多个人修改了同一行代码。
+
+举个例子：把 gdy分支合并到 dev分支
+git checkout gdy
+git pull
+git checkout dev
+git merge gdy
+如果出现冲突，去到编辑中找到对就的代码文件，进行冲突合并（用谁的代码）
+git add .
+git commit -m '合并gdy分支'
+git push origin dev
+
+
+版本回退：
+git log
+git reset --hard a65e8b65020221ef3db94497c4c19d0ae421b7c6
+
+
+y码云补充：
+简易的命令行入门教程:
+Git 全局设置:
+
+git config --global user.name "yaoWenBin"
+git config --global user.email "1197910581@qq.com"
+创建 git 仓库:
+
+mkdir ywb-project-demo-one
+cd ywb-project-demo-one
+git init
+touch README.md
+git add README.md
+git commit -m "first commit"
+git remote add origin https://gitee.com/yao_wenbin/ywb-project-demo-one.git
+git push -u origin master
+已有仓库?
+
+cd existing_git_repo
+git remote add origin https://gitee.com/yao_wenbin/ywb-project-demo-one.git
+git push -u origin master
+
+y git 补充：
+命令   git config --global user.name "你的git名称"
+命令   git config --global user.email "你的git验证邮箱"
+
+查看配置列表： git config --list
+
+git命令行中的操作命令：
+命令  cd d:  进入相应的磁盘 
+命令  cd  进入文件夹
+命令 cd ..  返回上一层目录
+命令  mkdir  创建目录 
+命令  pwd 显示当前工作目录的全路径
+命令 touch xx  新建xx文件
+命令 vi xx  编辑xx文件，按i切换到编辑模式，按esc切换到命令模式，输入冒号:wq 回车，保存并返回
+命令  rm  删除文件
+命令  ls 查看当前目录的所有文件
+命令 clear  清屏
+
+命令 git add ‘文件名’  提交到暂存区
+        git add -u  提交所有被修改(modified)和被删除(deleted)文件，不包括新文件(new)
+        git add .  提交所有新文件(new)和被修改(modified)文件，不包括被删除(deleted)文件
+        git add -A  提交所有变化 
+        git add *  提交所有变化(忽略.gitignore)
+把咱们的文件存放在一个神秘的地方 >>>> 暂存区 （暂存区在本机）
+
+2.把文件提交到本地仓库中去。
+
+3.查看commit状态
+命令  git status  用于显示工作目录和暂存区的状态。
+会发现出现了一些变化。git告诉我们，git进行了一些修改，但是这些修改并没有被提交。
+
+4.查看工作区修改的内容
+命令1 git diff 你的文件名  会出现更改信息
+将更改后的东西提交上去，和之前一样。先add 然后再commit 。
+
+5.版本退回
+命令5-1. git log          （ 查看日志）
+        或者   git reflog    （这种更好用）
+命令  git reset --hard HEAD^  退回到上个版本 如果需要退回好多版本就在后面加上 ^ 例： git reset --hard HEAD^^退回两个版本。
+git reset --hard 191e0c7  回退到指定版本
+
+6.删除
+命令1. git add  xx
+命令2. git commit -m ‘备注’
+命令3. rm b.txt  这个是删除b文件的命令
+
+总结：
+	1. git init    -> 创建版本库
+	2. git add 文件名    -> 添加到暂存区
+	3. git commit -m '提交注释'    ->提交到本地仓库
+
+补充：
+git push -u origin master 将本地的库推送到master分支 （就是推送到服务器上）
+git push -u -f origin master(提交到远程仓库，这个命令中的 -f 是强制推送，因为远程仓库只有初始化的文件，所以强制推送上去就行了，
+不加-f 会报当前分支没有远程分支，强制推送可以覆盖master，这样就完成了第一次提交的步骤)
+以后提交当前分支可以直接用 git push
+git remote -v  查看远程仓库地址
+
+从现在开始，只需要git push就可以把本机的代码提交到远程仓库。
+git push     (提交master分支 到远程仓库)
+git push origin 分支名     (提交其他分支 到远程仓库)
+
+获取远程仓库的数据：
+git fetch：相当于是从远程获取最新到本地，不会自动merge
+git pull：相当于是从远程获取最新版本并merge到本地
+git pull origin 分支名   更新某个远程分支到本地
+git clone    从服务器克隆数据到本地
+
+如果输入git remote add origin git@github.com:djqiang（github帐号名）/gitdemo（项目名）.git    提示出错信息：fatal: remote origin already exists.
+解决办法如下：
+1、先输入$ git remote rm origin 
+2、再输入$ git remote add origin git@github.com:djqiang/gitdemo.git 就不会报错了！
+3、如果输入$ git remote rm origin 还是报错的话，error: Could not remove config section 'remote.origin'. 我们需要修改gitconfig文件的内容  
+4、找到你的github的安装路径，我的是C:\Users\ASUS\AppData\Local\GitHub\PortableGit_ca477551eeb4aea0e4ae9fcd3358bd96720bb5c8\etc
+5、找到一个名为gitconfig的文件，打开它把里面的[remote "origin"]那一行删掉就好了！
+
+配置SSH：
+（1）首先检查电脑是否曾经生成过私钥
+cd ~/.ssh
+若打开该文件夹为空，则表示没有生成过秘钥，进入第二步。（~表示根目录）
+  (2) 生成私钥
+ssh-keygen -t rsa -C "your email"
+命令要求输入密码，不用输，三个回车即可。
+执行成功后，会在主目录.ssh路径下生成两个文件：id_rsa私钥文件；id_rsa.pub公钥文件； 
+（3）配置公钥
+登陆github帐户点击头像，然后 Settings -> 左栏点击 SSH and GPG keys -> 点击 New SSH key
+在远程仓库github上添加title和key，和本地的一致。title可以自己取一个容易区分的名字，key为id_rsa.pub中的内容（全部复制，可用cat id_rsa.pub命令打开）
+git使用https协议，每次pull, push都要输入密码，相当的烦。
+使用git协议，然后配置好SSH，这样可以省去每次都输密码。
+参考文章地址：
+https://www.cnblogs.com/superGG1990/p/6844952.html
+
+分支操作:
+查看分支：git branch
+当前分支前有 * 号
+创建分支：git branch <name>
+切换分支：git checkout <name>
+创建+切换分支：git checkout -b <name>
+合并某分支到当前分支：git merge <name>
+删除分支：git branch -d <name>
+git checkout 分支名  可以恢复删除的分支
+
+合并分支：
+1、先建一个分支              git branch 分支名
+2、切换到新建的分支          git checkout 分支名
+3、提交分支上的代码          git add .    git commit -m “提交注释”
+4、切换至主分支上            git checkout master
+5、然后合并分支              git merge 分支名字
+6、合并完以后就push          最好先pull一次  然后 git push
+7、切换到自己的分支          git merge 分支名称
+
+设置git忽略文件：
+1.创建文件：.gitignore
+2.忽略文件列表
+
+如果出现如：
+Please enter a commit message to explain why this merge is necessary,
+# especially if it merges an updated upstream into a topic branch.
+“:wq”是Linux操作系统命令： 表示强制性写入文件并退出。
+输入“:wq”，注意是英文输入状态下的冒号，然后按下“Enter”键。
+
+SVN 使用
+使用VisualSVN Server建立版本库
+https://www.cnblogs.com/lcyuhe/p/4539696.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
