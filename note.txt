@@ -1,0 +1,148 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+html,
+body,
+ul,
+li,
+ol,
+dl,
+dd,
+dt,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+fieldset,
+legend,
+img,
+input,
+figure,
+figcaption {
+  margin: 0;
+  padding: 0;
+}
+* {
+  box-sizing: border-box;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 15.9975px;
+  font-weight: normal;
+}
+ul,
+ol,
+li {
+  list-style: none;
+}
+a,
+u {
+  text-decoration: none;
+}
+b,
+strong {
+  font-weight: normal;
+}
+em,
+i {
+  font-style: normal;
+}
+img {
+  border: 0;
+  display: block;
+  /*清除图片下面的大于0.04rem的间距*/
+}
+input {
+  outline: none;
+  display: block;
+}
+
+
+ // 作用：重置html的font-size
+
+    function resetRootFZ() {
+      var oHtml = document.querySelector('html');
+      var width = oHtml.getBoundingClientRect().width
+      // 设置根字体的大小等于html节点的宽度的十分之一
+      oHtml.style.fontSize = width / 10 + 'px';
+      console.log('root font size', oHtml.style.fontSize)
+    }
+
+    resetRootFZ()
+
+    // 当window窗口尺寸变化时，重新设置根字体的大小
+    window.addEventListener('resize', function () {
+      resetRootFZ()
+    })
+
+
+    //解决safari自带放大功能：阻止双击放大
+    var lastTime = 0;
+    document.addEventListener('touchstart', function (event) {
+      if (event.touches.length > 1) {
+        event.preventDefault();
+      }
+    });
+    document.addEventListener('touchend', function (event) {
+      var nowTime = (new Date()).getTime();
+      if (nowTime - lastTime <= 300) {
+        event.preventDefault();
+      }
+      lastTime = nowTime;
+    }, false);
+
+    // 解决safari自带放大功能：阻止双指放大
+    document.addEventListener('gesturestart', function (event) {
+      event.preventDefault();
+    });
+
+
+
+git config --global user.name "xxx"
+git config --global user.email "xxx@qq.com"
+
+clear 清屏
+
+git init 
+git add .
+git commit -m
+git status 查看工作目录和暂存区状态
+
+git diff xx.txt 查看工作区修改的内容
+git log 查看日志
+git reset --hard 123a1b2
+ 
+git remote add orgin https://github//xx  本地仓库和远方仓库连接
+
+git push -u origin master 将本地的库推送到master分支
+git push -u -f origin master 将本地的库强送，会覆盖master
+
+git push 提交master分支到远程仓库
+git push origin 分支名 提交其他分支到远程仓库
+
+git fetch :从远程获取最新到本地，不会自动merge
+git pull :从远程获取最新到本地，并自动merge到本地
+
+git branch 查看分支
+git branch <name> 创建分支
+git checkout <name> 切换分支
+git merge <name> 合并分支
+
+
+
+
